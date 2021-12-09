@@ -10,6 +10,14 @@
                     <p class="card-text ">{{ post.content | safe }}</p>
                 </div>
             </div>
+            {% if user.is_authenticated and user.id == post.author.id %}
+                <div class="col-md-8 mb-4  mt-3 left  top">
+                        <a href="{% url 'update_post' post.id %}"
+                           class="btn btn-danger">Отредактировать пост</a>
+                        <a href="{% url 'delete_post' post.id %}"
+                           class="btn btn-danger">Удалить пост</a>
+                </div>
+            {% endif %}
             {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
 
             <div class="col-md-8 card mb-4  mt-3 ">
@@ -37,18 +45,12 @@
             </div>
             <div class="col-md-8 card mb-4  mt-3 ">
                 <div class="card-body">
-                    {% if new_comment %}
-                        <div class="alert alert-success" role="alert">
-                            Your comment is awaiting moderation
-                        </div>
-                    {% else %}
-                        <h3>Leave a comment</h3>
-                        <form method="post" style="margin-top: 1.3em;">
-                            {{ comment_form | crispy }}
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-                        </form>
-                    {% endif %}
+                    <h3>Leave a comment</h3>
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

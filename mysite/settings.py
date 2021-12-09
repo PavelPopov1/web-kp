@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "blog",
     "crispy_forms",
     "django_summernote",
+    "users"
 ]
 
 
@@ -158,3 +159,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+
+AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = '/users/login'
