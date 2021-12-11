@@ -52,7 +52,7 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 class LogoutView(LoginRequiredMixin, ListView):
     model = User
-    success_url = 'index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(LogoutView, self).get_context_data(**kwargs)
