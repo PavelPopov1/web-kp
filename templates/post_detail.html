@@ -13,9 +13,9 @@
             {% if user.is_authenticated and user.id == post.author.id %}
                 <div class="col-md-8 mb-4  mt-3 left  top">
                         <a href="{% url 'update_post' post.id %}"
-                           class="btn btn-danger">Отредактировать пост</a>
+                           class="btn btn-danger" onclick="return confirm('Are you sure you want to update?');">Отредактировать пост</a>
                         <a href="{% url 'delete_post' post.id %}"
-                           class="btn btn-danger">Удалить пост</a>
+                           class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');">Удалить пост</a>
                 </div>
             {% endif %}
             {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}

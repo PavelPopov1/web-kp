@@ -64,7 +64,7 @@ class PostView(CreateView, LoginRequiredMixin):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.author = self.request.user
-        self.object.slug = f"{unidecode.unidecode(form.cleaned_data['title']).replace(' ', '_')}_{self.request.user.id}"
+        self.object.slug = f"{''.join(e for e in unidecode.unidecode(form.cleaned_data['title']) if e.isalnum())}_{self.request.user.id}"
 
         dup_check = Post.objects.filter(slug=self.object.slug)
         if dup_check:
